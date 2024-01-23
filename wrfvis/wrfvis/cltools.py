@@ -10,6 +10,7 @@ import sys
 import webbrowser
 import os
 import wrfvis
+from wrfvis.core import get_time_index
 
 HELP = """wrfvis_gridcell: Visualization of WRF output at a single selected grid cell.
 
@@ -130,30 +131,6 @@ def check_wind(param, plot_type):
             f'It is not possible to make a {plot_type} plot for Wind components')
 
 
-def get_time_index(time_input):
-
-    times = ['2018-08-18T12:00', '2018-08-18T13:00', '2018-08-18T14:00',
-             '2018-08-18T15:00', '2018-08-18T16:00', '2018-08-18T17:00',
-             '2018-08-18T18:00', '2018-08-18T19:00', '2018-08-18T20:00',
-             '2018-08-18T21:00', '2018-08-18T22:00', '2018-08-18T23:00',
-             '2018-08-19T00:00', '2018-08-19T01:00', '2018-08-19T02:00',
-             '2018-08-19T03:00', '2018-08-19T04:00', '2018-08-19T05:00',
-             '2018-08-19T06:00', '2018-08-19T07:00', '2018-08-19T08:00',
-             '2018-08-19T09:00', '2018-08-19T10:00', '2018-08-19T11:00',
-             '2018-08-19T12:00', '2018-08-19T13:00', '2018-08-19T14:00',
-             '2018-08-19T15:00', '2018-08-19T16:00', '2018-08-19T17:00',
-             '2018-08-19T18:00', '2018-08-19T19:00', '2018-08-19T20:00',
-             '2018-08-19T21:00', '2018-08-19T22:00', '2018-08-19T23:00']
-
-    if time_input not in times:
-        raise ValueError(
-            f'The value {time_input} for time is not found.\n' +
-            'Please use the format 2018-08-DDTHH:00.\n' +
-            'Every hour from 2018-08-18T12:00 to 2018-08-19T23:00 is available.')
-    time_index = times.index(time_input)
-    return time_index
-
-
 def MAP(args):
     """The actual wrfvis_map command line tool.
 
@@ -233,12 +210,8 @@ def CROSS(args):
         print('wrfvis_MAP is provided "as is", without warranty of any kind')
     elif ('-p' in args) and ('-t' in args):
         param = args[args.index('-p') + 1]
-        # call the check function  for the parameter if user asks for wind components
-        plottype = 'crosssection'
-        check_wind(param, plottype)
-        # get the dataset time index from calling the function get_time_index
         time = get_time_index(args[args.index('-t') + 1])
-
+        # lat = float(args[args.index('-l') + 1])
         if '-hgt' in args:
             hgt = float(args[args.index('-hgt') + 1])
         else:
@@ -260,6 +233,8 @@ def CROSS(args):
                 webbrowser.get().open_new_tab('file://' + html_path)
         else:
             raise FileNotFoundError("Error: 'wrfout' file not found.")
+            # print FileNotFoundError("Error: 'wrfout' file not found.")
+
     else:
         print('wrfvis_map: command not understood. '
               'Type "wrfvis_map --help" for usage information.')

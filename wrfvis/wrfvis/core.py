@@ -11,6 +11,30 @@ import xarray as xr
 from wrfvis import cfg, grid, graphics, skewT
 
 
+def get_time_index(time_input):
+
+    times = ['2018-08-18T12:00', '2018-08-18T13:00', '2018-08-18T14:00',
+             '2018-08-18T15:00', '2018-08-18T16:00', '2018-08-18T17:00',
+             '2018-08-18T18:00', '2018-08-18T19:00', '2018-08-18T20:00',
+             '2018-08-18T21:00', '2018-08-18T22:00', '2018-08-18T23:00',
+             '2018-08-19T00:00', '2018-08-19T01:00', '2018-08-19T02:00',
+             '2018-08-19T03:00', '2018-08-19T04:00', '2018-08-19T05:00',
+             '2018-08-19T06:00', '2018-08-19T07:00', '2018-08-19T08:00',
+             '2018-08-19T09:00', '2018-08-19T10:00', '2018-08-19T11:00',
+             '2018-08-19T12:00', '2018-08-19T13:00', '2018-08-19T14:00',
+             '2018-08-19T15:00', '2018-08-19T16:00', '2018-08-19T17:00',
+             '2018-08-19T18:00', '2018-08-19T19:00', '2018-08-19T20:00',
+             '2018-08-19T21:00', '2018-08-19T22:00', '2018-08-19T23:00']
+
+    if time_input not in times:
+        raise ValueError(
+            f'The value {time_input} for time is not found.\n' +
+            'Please use the format 2018-08-DDTHH:00.\n' +
+            'Every hour from 2018-08-18T12:00 to 2018-08-19T23:00 is available.')
+    time_index = times.index(time_input)
+    return time_index
+
+
 def get_wrf_timeseries(param, lon, lat, zagl=None):
     """Read the time series from the WRF output file.
 
@@ -73,6 +97,7 @@ def get_wrf_timeseries(param, lon, lat, zagl=None):
 
                     # terrain elevation
                     wrf_hgt = ds.HGT[0, :, :]
+
                     return df, wrf_hgt
                 else:
                     raise ValueError(
@@ -169,7 +194,6 @@ def get_wrf_for_map(param, time, zagl=None):
                     df.attrs['variable_descr'] = ds[param].description
                     # add information about the location
                     df.attrs['grid_point_elevation_time0'] = nlhgt[0]
-
                     return df, is_3D
                 else:
                     raise ValueError(
@@ -192,7 +216,6 @@ def get_wrf_for_map(param, time, zagl=None):
 
                     # add information about the location
                     df.attrs['distance_to_grid_point'] = ngcdist
-
                     return df, is_3D
                 else:
                     raise ValueError(
@@ -244,10 +267,19 @@ def get_wrf_for_cross(param, time, lat=None, lon=None, hgt=None):
 
                     # creates an xarray DataArray for contourf plot of the crosssection
                     vararray = ds[param][time, 0:nlind[0], ngcind[0], :]
-                    df = vararray
-                    df.attrs['lat'] = lat
 
-                    # terrain elevation, can be implemented
+                    # the following gives me a problem with extracting the attribute description:
+
+                    # if param == 'T':
+                    #     # WRF output is perturbation potential temperature
+                    #     vararray = ds[param][time, 0:nlind[0], ngcind[0], :] + 300
+                    # else:
+                    #     vararray = ds[param][time, 0:nlind[0], ngcind[0], :]
+
+                    df = vararray
+                    vararray.attrs['lat'] = lat
+
+                    # terrain elevation, not implemented
                     wrf_hgt = ds.HGT[0, :, :]
                     return df, wrf_hgt
 
@@ -466,7 +498,7 @@ def write_html_cross(param, time, lat, lon, zagl, directory=None):
 
         # create HTML from template
         outpath = os.path.join(directory, 'index.html')
-        with open(cfg.html_template_cross, 'r') as infile:
+        with open(cfg.html_template, 'r') as infile:
             lines = infile.readlines()
             out = []
             for txt in lines:

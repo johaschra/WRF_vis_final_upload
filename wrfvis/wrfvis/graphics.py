@@ -134,8 +134,11 @@ def plot_map(var, is_3D, filepath=None):
 
     # plot variable and coastlines
     clevels = np.linspace(min_data, max_data, 10, endpoint=True)
-    ax_map = ax.tricontourf(var.XLONG, var.XLAT, data,
-                            levels=clevels, vmin=min_data, vmax=max_data)
+    if is_3D:
+        ax_map = ax.tricontourf(var.XLONG, var.XLAT, data)
+    else:
+        ax_map = ax.tricontourf(var.XLONG, var.XLAT, data,
+                                levels=clevels, vmin=min_data, vmax=max_data)
     ax.coastlines()
 
     # title and labels
@@ -180,18 +183,17 @@ def plot_cross(var, filepath=None):
         Crosssection height, longitude or latitude.
 
     '''
-    # If User chooses latitude value
+    # User chooses latitude value
     if var.dims[1] == 'west_east':
         fig, ax = plt.subplots(figsize=(8, 6))
         ax.set_position([0.1, 0.1, 0.75, 0.85])
 
-        coord_name = 'longitude $^{{\circ}}$'
+        coord_name = 'longitude'
         ax.set_xlabel(coord_name)
         ax.set_ylabel('Gridcell height value')
 
         # define figure
-        cbax = fig.add_axes([0.88, 0.1, 0.02, 0.85])
-        plt.axis('off')
+
         # creates crosssection
         hc = ax.contourf(var.XLONG, var.bottom_top, var)
 
@@ -201,21 +203,20 @@ def plot_cross(var, filepath=None):
         ax.set_title(f"Cross-Section at Latitude: {lat_value} $^{{\circ}}$")
 
         param_name = var.name
+        cbax = fig.add_axes([0.88, 0.1, 0.02, 0.85])
+        plt.axis('off')
         cb = plt.colorbar(hc, ax=cbax, fraction=1, format='%.0f')
         cb.ax.set_ylabel(
             f"{var.attrs['description']} - [{var.attrs['units']}]")
-        # If you wanna see the created xarray dataset print:
-        # print(var)
-
-    # If User chooses longitude value
+        print(var)
+    # User chooses longitude value
     if var.dims[1] == 'south_north':
         fig, ax = plt.subplots(figsize=(8, 6))
         ax.set_position([0.1, 0.1, 0.75, 0.85])
         coord_name = var.coords[var.dims[1]].name
-        ax.set_xlabel('latitude $^{{\circ}}$ ')
+        ax.set_xlabel('latitude ')
         ax.set_ylabel('Gridcell height value')
         cbax = fig.add_axes([0.88, 0.1, 0.02, 0.85])
-        plt.axis('off')
         hc = ax.contourf(var.XLAT, var.bottom_top, var)
 
         lon_value = int(var.attrs['lon'])
@@ -225,8 +226,7 @@ def plot_cross(var, filepath=None):
         cb = plt.colorbar(hc, ax=cbax, fraction=1, format='%.0f')
         cb.ax.set_ylabel(
             f"{var.attrs['description']} - [{var.attrs['units']}]")
-        # If you wanna see the created xarray dataset print:
-        # print(var)
+        print(var)
 
     if filepath is not None:
         plt.savefig(filepath, dpi=150)

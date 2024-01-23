@@ -39,3 +39,22 @@ def test_plot_ts(tmpdir):
     assert os.path.exists(fpath)
 
     plt.close()
+
+
+def test_plot_map(tmpdir):
+    '''Author:Johanna Schramm'''
+    # load test dataset
+    df = pd.read_pickle(cfg.test_map)
+
+    # Check that title text is found in figure
+    fig = graphics.plot_map(df, False)
+    ref = 'TEMP at 2 M'
+    test = [ref in t.get_text() for t in fig.findobj(mpl.text.Text)]
+    assert np.any(test)
+
+    # Check that figure is created
+    fpath = str(tmpdir.join('map.png'))
+    graphics.plot_map(df, False, filepath=fpath)
+    assert os.path.exists(fpath)
+
+    plt.close()
