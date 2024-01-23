@@ -1,5 +1,0 @@
-[console_scripts]
-wrfvis_cross = wrfvis.cltools:wrfvis_cross
-wrfvis_gridcell = wrfvis.cltools:wrfvis_gridcell
-wrfvis_map = wrfvis.cltools:wrfvis_map
-wrfvis_skewt = wrfvis.cltools:wrfvis_skewt
