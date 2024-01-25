@@ -58,7 +58,7 @@ For 2d variable (MU: "perturbation dry air mass in column") type
 
 ## Added functionalities
 
-1. Display spacial distributions of a parameter on a map (wrvis_map)
+- Display spacial distributions of a parameter on a map (wrvis_map)
    
 Author: **Johanna Schramm**
 
@@ -74,7 +74,7 @@ Example usage:
 
 
 
-2. Plot of a crosssection either over all latitudes by a choosing a longitude value in degrees or over all longitudes choosing a latitude.
+- Plot of a crosssection either over all latitudes by a choosing a longitude value in degrees or over all longitudes choosing a latitude.
 Its is optional to select a certain height for the crosssection
 
 Author: **Lena Zelger**
@@ -98,7 +98,7 @@ longitude of 10 degrees at a height of 10000 meter converted and displayed as a 
 
 
 
-3.Create an html file to plot a single Skew T-logP plot with wind profile, hodographs and Skew T-logP indices.
+- Create an html file to plot a single Skew T-logP plot with wind profile, hodographs and Skew T-logP indices.
 
 Author: **Christian Brida**
 
