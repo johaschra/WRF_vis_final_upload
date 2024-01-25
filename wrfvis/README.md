@@ -59,9 +59,11 @@ For 2d variable (MU: "perturbation dry air mass in column") type
 ## Added functionalities
 
 1. Display spacial distributions of a parameter on a map (wrvis_map)
+   
 Author: **Johanna Schramm**
 
 Command line input:
+
     $ wrfvis_map -h for help
 
     
@@ -72,28 +74,44 @@ Example usage:
 
 
 
-3. Plot of a crosssection either over all latitudes by a choosing a longitude value in degrees or over all longitudes choosing a latitude.
+2. Plot of a crosssection either over all latitudes by a choosing a longitude value in degrees or over all longitudes choosing a latitude.
 Its is optional to select a certain height for the crosssection
-#Author: Lena Zelger
-Command line input: wrfvis_cross -h for help
+
+Author: **Lena Zelger**
+
+Command line input: 
+
+    $ wrfvis_cross -h for help
+
 
 Example usage:
-wrfvis_cross -p T -t 5 -hgt 10000 -lon 10 
+
+    $ wrfvis_cross -p T -t 5 -hgt 10000 -lon 10 
+
+
 (Displays perturbation Temperature on 18 Aug 2028 
 at 17 UTC over all latitudinal cells at a 
 longitude of 10 degrees at a height of 10000 meter converted and displayed as a gridcell number)
 
-wrfvis_cross -p T -t 5 -hgt 10000 -lat 10 (option over longitude)
-wrfvis_cross -p T -t 5  -lon 10 (option without selecting height, gives the crosssection over all height cells)
+    $ wrfvis_cross -p T -t 5 -hgt 10000 -lat 10 (option over longitude)
+    $ wrfvis_cross -p T -t 5  -lon 10 (option without selecting height, gives the crosssection over all height cells)
 
 
 
-3.Create an html file to plot a single Skew T-logP plot with wind profile,
-hodographs and Skew T-logP indices.
-#Author: Christian Brida
+3.Create an html file to plot a single Skew T-logP plot with wind profile, hodographs and Skew T-logP indices.
 
-To plot a single diagram, with wind profile, hodograph and indices, you can run: wrfvis_skewt -l 11 45 -t 2018-08-18T12:00
-instead to compare 2 different timestamps and a time range type: wrfvis_skewt -l 11 45 -t 2018-08-18T12:00 12
+Author: **Christian Brida**
+
+Command line input: 
+
+    $ wrfvis_skewt -h for help
+
+
+To plot a single diagram, with wind profile, hodograph and indices, you can run: 
+
+    $ wrfvis_skewt -l 11 45 -t 2018-08-18T12:00 for single diagram, wind profile, hodograph and parameters
+    $ wrfvis_skewt -l 11 45 -t 2018-08-18T12:00 12 for compare 2 different timestamps and the average Skew T-logP
+    
 
 ########## new versions for the command-line tools in file "Max" ###########
 1. "cftools.py": Modifications of the command-line tools
