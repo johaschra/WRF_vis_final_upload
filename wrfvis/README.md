@@ -56,14 +56,15 @@ For 2d variable (MU: "perturbation dry air mass in column") type
 
     $ wrfvis_gridcell -p MU -l 11 45
 
-#################### Added functionalities################
+## Added functionalities
 
 1.Display spacial distributions of a parameter on a map (wrvis_map)
 #Author: Johanna Schramm
 Command line input: wrfvis_map -h for help
-Example usage
--wrfvis_map -p T2 -t 5 (Displays Temp at 2 M on 18 Aug 2028 at 17 UTC)
--wrfvis_map -p T -t 5 -hgt 5 (Displays Temp at Level 5 on 18 Aug 2028 at 17 UTC)
+Example usage:
+
+    $ wrfvis_map -p T2 -t 5 (Displays Temp at 2 M on 18 Aug 2028 at 17 UTC)
+    $ wrfvis_map -p T -t 5 -hgt 5 (Displays Temp at Level 5 on 18 Aug 2028 at 17 UTC)
 
 
 
