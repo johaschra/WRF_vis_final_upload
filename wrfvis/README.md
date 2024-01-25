@@ -58,9 +58,13 @@ For 2d variable (MU: "perturbation dry air mass in column") type
 
 ## Added functionalities
 
-1.Display spacial distributions of a parameter on a map (wrvis_map)
-#Author: Johanna Schramm
-Command line input: wrfvis_map -h for help
+1. Display spacial distributions of a parameter on a map (wrvis_map)
+Author: **Johanna Schramm**
+
+Command line input:
+    $ wrfvis_map -h for help
+
+    
 Example usage:
 
     $ wrfvis_map -p T2 -t 5 (Displays Temp at 2 M on 18 Aug 2028 at 17 UTC)
@@ -68,7 +72,7 @@ Example usage:
 
 
 
-2. Plot of a crosssection either over all latitudes by a choosing a longitude value in degrees or over all longitudes choosing a latitude.
+3. Plot of a crosssection either over all latitudes by a choosing a longitude value in degrees or over all longitudes choosing a latitude.
 Its is optional to select a certain height for the crosssection
 #Author: Lena Zelger
 Command line input: wrfvis_cross -h for help
