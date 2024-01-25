@@ -2,7 +2,7 @@
 # At least we separated our actual program from the I/O part so that we
 # can test that
 import wrfvis
-from wrfvis.cltools import gridcell, MAP, CROSS, check_wind
+from wrfvis.cltools import gridcell, MAP, CROSS, check_wind, skewt
 
 import pytest
 
