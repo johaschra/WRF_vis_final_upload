@@ -18,17 +18,40 @@ Based on basic Skew T-logP diagram I develop another function that allow the use
 
 #### Plots
 - Plot basic Skew T-LogP
+  Using Metpy package I can develop the Skew T-logP diagram providing the pressure for each level, the temperarure in Celsius degree, the dewpoint and the wind components.
 - Plot wind profile
+  From wind components I calculate the wind speed and the wind direction at each level and plot these two variables over the elevation. The elevation is treated as pressure, like in Skew T-logP plot, in logaritmic scale. 
 - Plot hodograph
+  The hodograph represent the vector of the wind. Each point represents the wind component in x and y direction represented on the plane. Different colors are used to hightlight the elevation where the point refers. With this plot we can determine the advection mechanism of the air masses over a specific point. 
 - Derivation of Skew T-LogP paramters
+  From Skew T-logP diagram we can extract characteristic parameters, like freezing level, CAPE, CIN, and other specifc parameters that help to understand the weather. These paramters are derived usig the built-in function of Metpy package.
 - Skew T-LogP comparison and average
+  A quite different functionality, is the comparison of two soundings over a time period. For example, it can be useful understand how the air masses changes during the passage of a weather system. To do that we select a reference time and a delta time (in hours) and observe the two Skew T-logP at the reference time and after few hours (selected by user) and compare the average profile withe the standard deviation over the time interval. In this case we don't add wind profile, hodograph and parameters, which can be derived with the standard function.
+  
 #### User interface
-- Development of html webpage
-- Development of user input
+In cltools.py file I develop a specific user interface tha allow the user to select the coordindates of the point, the timestamp when to run the Skew T-logP diagram and eventually, if he is interested in comparison, the user select also a delta time in hours. The user can also obtain a detailed expanation how to run the code running:
+
+   $  wrfvis_skewt -h
+ 
+
+The output were incluced in two html files. 
+For example if you want the single profile with the complete information (wind profile, hodgraph and parameters) you have to run:
+
+  $ wrfvis_skewt -l 11 45 -t 2018-08-18T12:00
+
+
+Otherwise if you want a comparison you have to run
+
+  $ wrfvis_skewt -l 11 45 -t 2018-08-18T12:00 12
+
+
+In the both cases you select a point of coordinates (lon, lat) = (11,45), a timestamp of 2018-08-18T12:00. Only in second case you compare the initial timestamp with 12 hours later.
+
 #### Test
 - Testing
 
 ### Challenges and Issues
+One of the first challeng was to understand the structure of the package. 
 
 
    
