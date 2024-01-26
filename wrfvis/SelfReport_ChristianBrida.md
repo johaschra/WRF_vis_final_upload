@@ -51,7 +51,13 @@ In the both cases you select a point of coordinates (lon, lat) = (11,45), a time
 - Testing
 
 ### Challenges and Issues
-One of the first challeng was to understand the structure of the package. 
+One of the first challeng was to understand the structure of the package. After this first step, I develop the mandatory task that allow to manage and plot in the same way the 2d and the 3d variables. Some check on the data structure is applied. This step allows me to understand better the package structure and how the functions are linked each other.
+
+The developement of my task does not have particular problems. I am not particularly satisfied on the html file visualization, maybe I would spend more time to understand how integrate different plots and results in dynamic way in a webpage. Probably I missing of knowledge about this topic. 
+
+Another difficult task is the developemnet of tests. I understand the structure but sometimes is hard to think all the possible things that could lead to problem and issues. For a better testing session it would be great have more exercises and examples during the lectures.
+
+And the final issues is to combine and work on a large project in 5 people. Due to my work I couldn't be in Innsbruck during and after the Christmas break. The interaction with the other component and the integration between different tasks function cannot be possbible. In addistion, every one develop its own code and the merging into a single project was a little bit difficult. Thanks to the support of other group member we tried to use github as platform of versioning that allow to keep track of changes and restore the code if something goes wrong duning the merging. Another problem was the heterogeity of the group. Some easy tasks which are prioritary to a better developement of the project was done at the end.
 
 
    
