@@ -31,16 +31,19 @@ Based on basic Skew T-logP diagram I develop another function that allow the use
 #### User interface
 In cltools.py file I develop a specific user interface tha allow the user to select the coordindates of the point, the timestamp when to run the Skew T-logP diagram and eventually, if he is interested in comparison, the user select also a delta time in hours. The user can also obtain a detailed expanation how to run the code running:
 
+
    $  wrfvis_skewt -h
- 
+
 
 The output were incluced in two html files. 
 For example if you want the single profile with the complete information (wind profile, hodgraph and parameters) you have to run:
+
 
   $ wrfvis_skewt -l 11 45 -t 2018-08-18T12:00
 
 
 Otherwise if you want a comparison you have to run
+
 
   $ wrfvis_skewt -l 11 45 -t 2018-08-18T12:00 12
 
