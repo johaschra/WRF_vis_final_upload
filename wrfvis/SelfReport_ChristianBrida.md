@@ -48,7 +48,11 @@ Otherwise if you want a comparison you have to run
 In the both cases you select a point of coordinates (lon, lat) = (11,45), a timestamp of 2018-08-18T12:00. Only in second case you compare the initial timestamp with 12 hours later.
 
 #### Test
-- Testing
+Most of functions developed were tested using pytest. Unit tests and intergration tests are applied in order to verify the functionality of each function. 
+For example, as unit test, I check if the function return the expected values and the proper data format. 
+For intergration test I try if more complicated function return data, which type and how it is integrated whith other.
+I also test the input from user interface. 
+An improvement of this section could be the rigorous testing of all the possible wrong situation tha could occurs. In this way we can also test how the package react to a wrong situation and which message are return to the user. This would allow to a better developemnt of the entire package. For time reason, the tests are only a subset of a full possible option. 
 
 ### Challenges and Issues
 One of the first challeng was to understand the structure of the package. After this first step, I develop the mandatory task that allow to manage and plot in the same way the 2d and the 3d variables. Some check on the data structure is applied. This step allows me to understand better the package structure and how the functions are linked each other.
