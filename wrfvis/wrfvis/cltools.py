@@ -72,7 +72,7 @@ hodograph and inidices or compare different diagrams at 2 different timestamps o
  Author: Christian Brida                     
 
 Usage:
-   -h_skewt, --help_skewt           : print the help
+   -h, --help           : print the help
    -v, --version                    : print the installed version
    -l, --location [LON] [LAT]       : location of the grid cell for which to plot the data
    -t, --time [TIME] [TIMEDELTA]    : sounding timestamp and timedelta (only for multiple skewt)
@@ -261,7 +261,7 @@ def skewt(args):
 
     if len(args) == 0:
         print(HELP_SKEWT)
-    elif args[0] in ['-h_skewt', '--help_skewt']:
+    elif args[0] in ['-h', '--help']:
         print(HELP_SKEWT)
     elif args[0] in ['-v', '--version']:
         print('wrfvis_gridcell: ' + wrfvis.__version__)
